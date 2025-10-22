@@ -3,7 +3,7 @@
 Landing page para promocionar y distribuir el APK de la aplicación Android "Gestor de Créditos".
 
 ## 🚀 Demo
-La landing está desplegada en GitHub Pages: [Ver sitio](https://tu-usuario.github.io/gestor-creditos-landing)
+La landing está desplegada en GitHub Pages: [Ver sitio](https://henrycobos.github.io/gestor-creditos-landing)
 
 ## 📱 Sobre la App
 - **Gestión de clientes y préstamos**
