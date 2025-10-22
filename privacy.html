@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de Privacidad - Gestor de Créditos</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container" style="padding:32px 0 48px; max-width: 860px;">
+    <a href="index.html" class="btn ghost">← Volver</a>
+    <h1>Política de Privacidad</h1>
+    <p>
+      Esta política describe cómo tratamos la información dentro de la aplicación "Gestor de Créditos". La app
+      funciona principalmente sin conexión y almacena los datos en el dispositivo del usuario.
+    </p>
+    <h2>Datos recolectados</h2>
+    <ul>
+      <li>Datos ingresados por el usuario: clientes, préstamos, pagos y notas.</li>
+      <li>Datos técnicos básicos para mejorar la estabilidad (por ejemplo, versión de la app).</li>
+    </ul>
+    <h2>Uso de los datos</h2>
+    <p>
+      Los datos se usan únicamente para la gestión de créditos y para proveer las funciones de la app. No compartimos
+      información personal con terceros sin consentimiento del usuario.
+    </p>
+    <h2>Permisos</h2>
+    <p>
+      La app puede solicitar permisos del sistema (por ejemplo, almacenamiento) para exportar respaldos. Estos permisos
+      se usan exclusivamente para brindar funcionalidades al usuario.
+    </p>
+    <h2>Seguridad</h2>
+    <p>
+      Recomendamos mantener respaldos periódicos. Implementamos prácticas razonables de seguridad, pero ningún sistema es
+      100% infalible.
+    </p>
+    <h2>Contacto</h2>
+    <p>
+      Si tienes dudas sobre esta política, escríbenos a <a href="mailto:privacidad@tudominio.com">privacidad@tudominio.com</a>.
+    </p>
+    <p style="color:#8892b0">Última actualización: <span id="date"></span></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var d = new Date();
+      var s = String(d.getFullYear()) + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+      var el = document.getElementById('date');
+      if (el) el.textContent = s;
+    });
+  </script>
+</body>
+</html>
+
+
