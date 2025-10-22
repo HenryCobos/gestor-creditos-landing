@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Webhook Handler - Gestor de Créditos</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .webhook-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        p {
+            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 14px;
+            text-align: left;
+        }
+        .success { color: #27ae60; }
+        .error { color: #e74c3c; }
+        .info { color: #3498db; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="webhook-icon">🔗</div>
+        <h1>PayPal Webhook Handler</h1>
+        <p>Este endpoint maneja las notificaciones de PayPal para la app Gestor de Créditos.</p>
+        
+        <div class="status" id="status">
+            <div class="info">⏳ Esperando notificaciones de PayPal...</div>
+        </div>
+        
+        <p><strong>Eventos soportados:</strong></p>
+        <ul style="text-align: left; color: #7f8c8d;">
+            <li>PAYMENT.SALE.COMPLETED - Pago completado</li>
+            <li>PAYMENT.SALE.DENIED - Pago denegado</li>
+            <li>BILLING.SUBSCRIPTION.CREATED - Suscripción creada</li>
+            <li>BILLING.SUBSCRIPTION.ACTIVATED - Suscripción activada</li>
+            <li>BILLING.SUBSCRIPTION.CANCELLED - Suscripción cancelada</li>
+        </ul>
+    </div>
+
+    <script>
+        // Función para manejar notificaciones de PayPal
+        function handlePayPalWebhook(event) {
+            console.log('🔔 Webhook recibido:', event);
+            
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                const data = event.data || event;
+                
+                // Verificar el tipo de evento
+                const eventType = data.event_type;
+                const resource = data.resource;
+                
+                let message = '';
+                let className = 'info';
+                
+                switch(eventType) {
+                    case 'PAYMENT.SALE.COMPLETED':
+                        message = `✅ Pago completado - ID: ${resource.id} - Monto: $${resource.amount.total}`;
+                        className = 'success';
+                        break;
+                    case 'PAYMENT.SALE.DENIED':
+                        message = `❌ Pago denegado - ID: ${resource.id}`;
+                        className = 'error';
+                        break;
+                    case 'BILLING.SUBSCRIPTION.CREATED':
+                        message = `📝 Suscripción creada - ID: ${resource.id}`;
+                        className = 'info';
+                        break;
+                    case 'BILLING.SUBSCRIPTION.ACTIVATED':
+                        message = `✅ Suscripción activada - ID: ${resource.id}`;
+                        className = 'success';
+                        break;
+                    case 'BILLING.SUBSCRIPTION.CANCELLED':
+                        message = `❌ Suscripción cancelada - ID: ${resource.id}`;
+                        className = 'error';
+                        break;
+                    default:
+                        message = `ℹ️ Evento recibido: ${eventType}`;
+                        className = 'info';
+                }
+                
+                statusDiv.innerHTML = `<div class="${className}">${message}</div>`;
+                
+                // Aquí podrías enviar la notificación a tu backend
+                // para actualizar el estado premium del usuario
+                console.log('📊 Datos del webhook:', {
+                    eventType,
+                    resourceId: resource.id,
+                    timestamp: new Date().toISOString()
+                });
+                
+            } catch (error) {
+                console.error('❌ Error procesando webhook:', error);
+                statusDiv.innerHTML = `<div class="error">❌ Error procesando notificación: ${error.message}</div>`;
+            }
+        }
+        
+        // Escuchar mensajes (para testing local)
+        window.addEventListener('message', handlePayPalWebhook);
+        
+        // Simular webhook para testing
+        if (window.location.search.includes('test=true')) {
+            setTimeout(() => {
+                handlePayPalWebhook({
+                    event_type: 'PAYMENT.SALE.COMPLETED',
+                    resource: {
+                        id: 'TEST-123456',
+                        amount: { total: '9.99' }
+                    }
+                });
+            }, 2000);
+        }
+        
+        console.log('🔗 Webhook handler inicializado');
+    </script>
+</body>
+</html>
