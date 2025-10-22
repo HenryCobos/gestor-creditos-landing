@@ -114,7 +114,68 @@ section { padding: 28px 0; }
 details { background: var(--card); border: 1px solid rgba(255,255,255,0.06); padding: 12px 14px; border-radius: 10px; margin-bottom: 10px; }
 summary { cursor: pointer; font-weight: 600; }
 
+.use-cases {
+  background: var(--card);
+  border-radius: 20px;
+  margin: 20px 0;
+}
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.use-case {
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.use-case h3 {
+  margin: 0 0 10px 0;
+  color: var(--primary);
+}
+
+.testimonials {
+  background: linear-gradient(135deg, var(--card) 0%, rgba(79, 70, 229, 0.1) 100%);
+  border-radius: 20px;
+  margin: 20px 0;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.testimonial {
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 20px;
+}
+.testimonial p {
+  font-style: italic;
+  margin: 0 0 15px 0;
+  color: var(--text);
+}
+.author strong {
+  color: var(--primary);
+  display: block;
+  margin-bottom: 5px;
+}
+.author span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .contact { text-align: center; }
+.final-cta {
+  margin-top: 20px;
+}
+.cta-note {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 10px 0 0 0;
+}
 
 .site-footer {
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -126,10 +187,14 @@ summary { cursor: pointer; font-weight: 600; }
   .hero-inner { grid-template-columns: 1fr; }
   .grid { grid-template-columns: 1fr 1fr; }
   .screens-grid { grid-template-columns: 1fr 1fr; }
+  .use-cases-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; }
   .screens-grid { grid-template-columns: 1fr; }
+  .use-cases-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 32px; }
 }
 
