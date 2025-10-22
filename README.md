@@ -32,8 +32,8 @@ La landing está desplegada en GitHub Pages: [Ver sitio](https://henrycobos.gith
 ```
 
 ## 🔧 Configuración
-1. Reemplaza `https://ejemplo.com/descargas/gestor-creditos.apk` por tu URL real del APK
-2. Actualiza los correos de contacto en `index.html`
+1. ✅ APK configurado en GitHub Releases
+2. ✅ Correos de contacto actualizados a `Apper2025@icloud.com`
 3. Añade tus imágenes (`logo.png`, `mockup.png`, `screen-*.png`)
 4. Activa analytics descomentando el código correspondiente
 
