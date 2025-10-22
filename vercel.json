@@ -14,7 +14,7 @@
     },
     {
       "src": "/apk",
-      "dest": "https://github.com/HenryCobos/gestor-creditos-landing/releases/latest/download/gestor-creditos.apk",
+      "dest": "https://github.com/HenryCobos/gestor-creditos-landing/releases/latest/download/app-release.apk",
       "status": 302
     }
   ],
